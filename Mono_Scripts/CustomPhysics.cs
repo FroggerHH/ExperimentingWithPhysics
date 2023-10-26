@@ -1,6 +1,6 @@
 ﻿namespace ExperimentingWithPhysics;
 
-public class CustomPhysics : MonoBehaviour
+public abstract class CustomPhysics : MonoBehaviour
 {
     public ZNetView m_nview;
     public float maxImpulse = 2;
@@ -15,6 +15,14 @@ public class CustomPhysics : MonoBehaviour
         if (!m_nview || m_nview.m_ghost) return;
 
         rb = GetComponent<Rigidbody>();
+        if (!rb)
+        {
+            DebugError($"'{this.GetPrefabName()}' have no rigidbody, which is required");
+            rb = gameObject.AddComponent<Rigidbody>();
+            rb.isKinematic = true;
+            rb.useGravity = false;
+        }
+
         foreach (var componentsInChild in GetComponentsInChildren<Collider>())
             componentsInChild.hasModifiableContacts = true;
         all.Add(this);

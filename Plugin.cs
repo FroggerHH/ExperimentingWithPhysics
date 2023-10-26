@@ -1,5 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Configuration;
+using PieceManager;
 
 namespace ExperimentingWithPhysics;
 
@@ -15,6 +16,8 @@ internal class Plugin : BaseUnityPlugin
     public static ConfigEntry<float> angularDrag;
     public static ConfigEntry<float> velocityModifier;
 
+    public static Piece conveyor;
+
     private void Awake()
     {
         CreateMod(this, ModName, ModAuthor, ModVersion, ModGUID);
@@ -27,6 +30,11 @@ internal class Plugin : BaseUnityPlugin
                 if (body is Conveyor conveyor) conveyor.velocityModifier = velocityModifier.Value;
             }
         };
+        LoadAssetBundle(ModName.ToLower());
+        var piece = new BuildPiece(bundle, "JF_Conveyor");
+        var component = piece.Prefab.AddComponent<Conveyor>();
+        component.directionPoint = component.transform.FindChildByName("dir");
+        conveyor = piece.Prefab.GetComponent<Piece>(); 
         maxImpulse = config("General", "Max Impulse", 2f,
             new ConfigDescription("", new AcceptableValueRange<float>(0.1f, 10f)));
         angularDrag = config("General", "Angular Drag", 5f,

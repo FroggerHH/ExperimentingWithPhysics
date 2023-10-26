@@ -72,6 +72,9 @@
         <Reference Include="Unity.Cecil.Pdb">
             <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Data\Managed\UnityEngine\Unity.Cecil.Pdb.dll</HintPath>
         </Reference>
+        <Reference Include="Unity.TextMeshPro">
+          <HintPath>..\..\..\Steam\steamapps\common\Valheim\valheim_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
         <Reference Include="UnityEditor">
             <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
         </Reference>
@@ -264,6 +267,9 @@
         <Reference Include="UnityEngine.TLSModule">
             <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.TLSModule.dll</HintPath>
         </Reference>
+        <Reference Include="UnityEngine.UI">
+          <HintPath>..\..\..\Steam\steamapps\common\Valheim\valheim_Data\Managed\UnityEngine.UI.dll</HintPath>
+        </Reference>
         <Reference Include="UnityEngine.UIElementsModule">
             <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.2f1\Editor\Data\Managed\UnityEngine\UnityEngine.UIElementsModule.dll</HintPath>
         </Reference>
@@ -334,6 +340,7 @@
         <Compile Include="Mono_Scripts\IgnoreContacts.cs" />
         <Compile Include="Mono_Scripts\SoftBody.cs" />
         <Compile Include="Patch\CreatePiece.cs" />
+        <Compile Include="PieceManager.cs" />
         <Compile Include="Plugin.cs" />
         <Compile Include="ConfigurationManagerAttributes.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
@@ -343,6 +350,9 @@
         <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
+        <EmbeddedResource Include="experimentingwithphysics">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </EmbeddedResource>
         <Content Include="ILRepack.targets" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
